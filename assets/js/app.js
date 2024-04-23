@@ -201,10 +201,24 @@ let footer = $(`
             <h6 class="display">Get in Touch</h6>
             <form>
               <input type="text" name="field1" placeholder="Your Name" />
-              <input type="email" name="field2" placeholder="Email Address" />
-              <textarea name="field3" placeholder="Type your Message"></textarea>
+              <input type="email" name="field2" placeholder="Email Address" id="emailInput" required />
               <input type="submit" value="Send" />
             </form>
+             <script>
+        function saveEmail() {
+            const email = document.getElementById("emailInput").value;
+            const filename = "emails.txt";
+
+            // Create a Blob containing the email address
+            const blob = new Blob([email + "\n"], { type: "text/plain" });
+
+            // Create a temporary link to trigger the download
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+        }
+    </script>
           </div>
         </div>
       </div>
